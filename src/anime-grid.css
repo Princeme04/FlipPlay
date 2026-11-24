@@ -1,0 +1,242 @@
+.anime-discovery {
+  width: 100%;
+  padding: 34px 16px 42px;
+  border-top: 1px solid #252525;
+  border-bottom: 1px solid #252525;
+  color: #fff;
+  background: #0b0b0b;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+.anime-discovery-inner {
+  width: min(1380px, 100%);
+  margin: 0 auto;
+}
+
+.anime-discovery-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.anime-discovery-kicker,
+.aura-filter-label {
+  margin: 0 0 7px;
+  color: #a2cc14;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.anime-discovery-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-family: "Anton", "Montserrat", sans-serif;
+  font-size: clamp(25px, 4vw, 34px);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.anime-discovery-heading h2 span {
+  color: #e60067;
+}
+
+.anime-discovery-copy {
+  margin: 7px 0 0;
+  color: #a3a3a3;
+  font-size: 12px;
+}
+
+.anime-result-count {
+  margin: 0 0 3px;
+  color: #a3a3a3;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.aura-filter-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 19px;
+}
+
+.aura-filter-label {
+  margin: 0 5px 0 0;
+  color: #a3a3a3;
+}
+
+.aura-button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid #363636;
+  border-radius: 3px;
+  color: #e5e5e5;
+  background: #171717;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.aura-button:hover,
+.aura-button[aria-pressed="true"] {
+  border-color: #e60067;
+  color: #fff;
+  background: #a4004a;
+}
+
+.aura-button:focus-visible {
+  outline: 2px solid #a2cc14;
+  outline-offset: 2px;
+}
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px 14px;
+}
+
+.anime-grid-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.anime-grid-poster-wrap {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border: 1px solid #292929;
+  border-radius: 3px;
+  background: #171717;
+}
+
+.anime-grid-poster {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.anime-grid-card:hover .anime-grid-poster {
+  transform: scale(1.045);
+}
+
+.anime-grid-score {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  padding: 4px 6px;
+  border-radius: 2px;
+  color: #fff;
+  background: rgb(0 0 0 / 86%);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.anime-grid-score-star {
+  color: #f5a623;
+}
+
+.anime-grid-title {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 8px 0 0;
+  color: #f3f3f3;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.anime-grid-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0 0;
+  color: #999;
+  font-size: 10px;
+}
+
+.anime-grid-episodes {
+  padding: 2px 4px;
+  border: 1px solid #383838;
+  border-radius: 2px;
+  color: #d4d4d4;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.anime-grid-meta-separator {
+  color: #5e5e5e;
+}
+
+.anime-state {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 30px 14px;
+  border: 1px dashed #383838;
+  color: #b7b7b7;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.anime-state.is-error {
+  border-color: #8d174b;
+  color: #f0a4c4;
+}
+
+.local-category-empty {
+  margin: 12px 0;
+  color: #737373;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.local-category-empty.is-error {
+  color: #c81062;
+}
+
+@media (max-width: 900px) {
+  .anime-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .anime-discovery {
+    padding: 27px 12px 32px;
+  }
+
+  .anime-discovery-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .aura-filter-label {
+    width: 100%;
+    margin-bottom: 1px;
+  }
+
+  .aura-button {
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .anime-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+}

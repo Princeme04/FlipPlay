@@ -1,0 +1,14 @@
+{
+  "name": "flipplay-landing-page",
+  "version": "1.0.0",
+  "description": "FlipPlay Landing Page - Platform Streaming Video & Digital Reading",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "build": "npm run build:css"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

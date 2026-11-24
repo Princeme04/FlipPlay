@@ -1,0 +1,110 @@
+[
+    {
+        "title":  "Atomic Habits",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Personal Development",
+        "creator":  "James Clear",
+        "release_year":  2018,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg?default=false"
+    },
+    {
+        "title":  "The Hobbit",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Fantasy",
+        "creator":  "J. R. R. Tolkien",
+        "release_year":  1937,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg?default=false"
+    },
+    {
+        "title":  "The Alchemist",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Fiction",
+        "creator":  "Paulo Coelho",
+        "release_year":  1988,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg?default=false"
+    },
+    {
+        "title":  "Pride and Prejudice",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Romance",
+        "creator":  "Jane Austen",
+        "release_year":  1813,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg?default=false"
+    },
+    {
+        "title":  "The Great Gatsby",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Classic",
+        "creator":  "F. Scott Fitzgerald",
+        "release_year":  1925,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg?default=false"
+    },
+    {
+        "title":  "To Kill a Mockingbird",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Classic",
+        "creator":  "Harper Lee",
+        "release_year":  1960,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg?default=false"
+    },
+    {
+        "title":  "One Piece, Vol. 1",
+        "type":  "book",
+        "format":  "manga",
+        "genre":  "Adventure",
+        "creator":  "Eiichiro Oda",
+        "release_year":  1997,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9781569319017-L.jpg?default=false"
+    },
+    {
+        "title":  "Demon Slayer, Vol. 1",
+        "type":  "book",
+        "format":  "manga",
+        "genre":  "Fantasy",
+        "creator":  "Koyoharu Gotouge",
+        "release_year":  2016,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9781974700523-L.jpg?default=false"
+    },
+    {
+        "title":  "Berserk, Vol. 1",
+        "type":  "book",
+        "format":  "manga",
+        "genre":  "Dark Fantasy",
+        "creator":  "Kentaro Miura",
+        "release_year":  1990,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9781593070205-L.jpg?default=false"
+    },
+    {
+        "title":  "Naruto, Vol. 1",
+        "type":  "book",
+        "format":  "manga",
+        "genre":  "Adventure",
+        "creator":  "Masashi Kishimoto",
+        "release_year":  1999,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9781569319000-L.jpg?default=false"
+    },
+    {
+        "title":  "The Little Prince",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Fantasy",
+        "creator":  "Antoine de Saint-ExupÃ©ry",
+        "release_year":  1943,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg?default=false"
+    },
+    {
+        "title":  "It Ends with Us",
+        "type":  "book",
+        "format":  "novel",
+        "genre":  "Romance",
+        "creator":  "Colleen Hoover",
+        "release_year":  2016,
+        "cover_url":  "https://covers.openlibrary.org/b/isbn/9781501110368-L.jpg?default=false"
+    }
+]

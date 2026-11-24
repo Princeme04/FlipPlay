@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlipPlay</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="./anime-grid.css" />
+    <script src="./script.js" defer></script>
+    
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              lkGreen: '#00875a',
+              lkPink: '#c81062',
+              lkPinkBtn: '#e60067',
+              lkLime: '#a2cc14',
+              lkPurple: '#9c27b0',
+              lkGold: '#f5a623',
+              lkHdGreen: '#1b8e3e',
+            },
+            fontFamily: {
+              brand: ['Anton', 'Montserrat', 'sans-serif'],
+              sans: ['Montserrat', 'Arial', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script> -->
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background-color: #000000;
+        font-family: 'Montserrat', Arial, sans-serif;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white min-h-screen flex flex-col justify-start selection:bg-[#e60067] selection:text-white">
+
+    <header class="w-full h-12 sm:h-14 flex flex-row items-stretch shadow-md overflow-hidden sticky top-0 z-50 bg-gradient-to-r from-[#00875a] via-[#00875a]/90 to-[#c81062]" style="background: linear-gradient(90deg, #00875a 0%, #00875a 25%, #c81062 60%, #c81062 100%);" aria-label="Main Navigation">
+      
+      <div class="bg-transparent flex items-center px-3 sm:px-5 gap-2.5 sm:gap-3.5 shrink-0">
+        <button type="button" class="w-6 sm:w-7 h-6 sm:h-7 flex flex-col justify-center gap-1 focus:outline-none cursor-pointer" aria-label="Menu">
+          <span class="w-5 sm:w-6 h-0.5 bg-white rounded-sm"></span>
+          <span class="w-5 sm:w-6 h-0.5 bg-white rounded-sm"></span>
+          <span class="w-5 sm:w-6 h-0.5 bg-white rounded-sm"></span>
+        </button>
+
+        <a href="#" class="flex items-center gap-1.5 sm:gap-2 text-decoration-none group">
+          <span class="font-['Anton',sans-serif] text-xl sm:text-2xl md:text-3xl text-white tracking-wider uppercase leading-none whitespace-nowrap">
+            FLIPPLAY
+          </span>
+        </a>
+      </div>
+
+      <div class="bg-transparent flex-1 flex items-center px-2 sm:px-4 min-w-0">
+        <form role="search" class="w-full flex items-center bg-black/20 border border-white/90 rounded-sm overflow-hidden h-8 sm:h-9">
+          <label for="search-media" class="sr-only">Cari buku, manga, atau anime di FlipPlay</label>
+          <input 
+            id="search-media"
+            type="search" 
+            placeholder="Cari buku, manga, atau anime di FlipPlay..." 
+            class="w-full bg-transparent px-2.5 sm:px-3 text-xs sm:text-sm text-white placeholder-white/80 font-semibold focus:outline-none min-w-0"
+          />
+          <button type="submit" class="bg-white h-full w-8 sm:w-10 flex items-center justify-center text-[#c81062] shrink-0 hover:bg-neutral-100 transition-colors" aria-label="Cari">
+            <i class="fa-solid fa-magnifying-glass text-xs sm:text-sm"></i>
+          </button>
+        </form>
+      </div>
+
+    </header>
+
+        <section id="trending-section" class="w-full max-w-[1380px] mx-auto px-3 sm:px-4 pt-4 sm:pt-6 pb-6 flex flex-col items-center" aria-label="Featured books">
+      <div class="w-full border-b border-neutral-800 pb-3 mb-3">
+        <h2 class="font-['Anton',sans-serif] text-xl sm:text-2xl uppercase tracking-wide text-white">Pilihan FlipPlay</h2>
+        <p class="text-xs sm:text-sm text-neutral-400 mt-1">Temukan bacaan favoritmu berikutnya.</p>
+      </div>
+      <div class="relative w-full">
+        <button id="slide-left-featured" type="button" class="flex absolute -left-2 md:-left-3 top-1/2 -translate-y-1/2 z-30 w-6 h-12 md:w-7 md:h-14 bg-[#e60067] hover:bg-[#ff0d7b] text-white items-center justify-center text-sm font-black shadow-lg rounded-r-sm transition-all cursor-pointer" aria-label="Previous books">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="slide-right-featured" type="button" class="flex absolute -right-2 md:-right-3 top-1/2 -translate-y-1/2 z-30 w-6 h-12 md:w-7 md:h-14 bg-[#e60067] hover:bg-[#ff0d7b] text-white items-center justify-center text-sm font-black shadow-lg rounded-l-sm transition-all cursor-pointer" aria-label="Next books">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div id="slider-featured" data-book-format="all" class="flex flex-row gap-3 sm:gap-3.5 overflow-x-auto scroll-smooth no-scrollbar py-1 w-full" aria-live="polite" aria-busy="true"></div>
+      </div>
+      <div class="w-full flex justify-center items-center mt-7 sm:mt-8 mb-2">
+        <a href="#reading-section" class="inline-flex items-center justify-center bg-[#e60067] hover:bg-[#ff0d7b] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider py-2.5 px-8 rounded-sm shadow-md transition-all text-center">
+          JELAJAHI PERPUSTAKAAN
+        </a>
+      </div>
+    </section>    <section id="anime-discovery" class="anime-discovery" aria-labelledby="anime-discovery-heading">
+      <div class="anime-discovery-inner">
+        <div class="anime-discovery-heading">
+          <div>
+            <!-- <p class="anime-discovery-kicker">FLIPPLAY ANIME DISCOVERY</p> -->
+            <h2 id="anime-discovery-heading">Bingung <span>??</span></h2>
+            <p class="anime-discovery-copy">Pilih aura, temukan anime yang cocok untuk ditonton.</p>
+          </div>
+          <p id="result-count" class="anime-result-count" aria-live="polite"></p>
+        </div>
+
+        <div class="aura-filter-row" role="group" aria-label="Filter anime berdasarkan aura">
+          <span class="aura-filter-label">PILIH AURA</span>
+          <button class="aura-button" type="button" data-aura="energy" aria-pressed="false">⚡ High Energy</button>
+          <button class="aura-button" type="button" data-aura="melancholy" aria-pressed="false">☾ Melancholy</button>
+          <button class="aura-button" type="button" data-aura="binge" aria-pressed="false">▤ Binge Mode</button>
+        </div>
+
+        <div id="anime-grid" class="anime-grid" aria-live="polite" aria-busy="true">
+          <p class="anime-state" role="status">Loading anime...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- <div class="w-full bg-[#181818] py-3 text-center border-t border-neutral-800 shadow-inner">
+      <a href="#" class="inline-flex items-center justify-center gap-1 text-[#f5a623] hover:text-amber-300 font-extrabold text-sm md:text-base tracking-wide transition-colors">
+        Lanjutkan Menonton <span>▾</span>
+      </a>
+    </div> -->
+
+    <main id="reading-section" class="w-full bg-[#f4f4f4] text-neutral-900 py-6 sm:py-8 px-3 sm:px-4 flex-1">
+      <div class="max-w-[1380px] mx-auto space-y-8">
+        <section aria-labelledby="novels-heading" class="w-full">
+          <div class="flex items-center justify-between border-b-2 border-neutral-300 pb-2 mb-4">
+            <h2 id="novels-heading" class="font-['Anton',sans-serif] text-xl sm:text-2xl font-bold uppercase tracking-wide text-neutral-900">Buku & Novel</h2>
+            <span class="bg-[#e60067] text-white text-[11px] sm:text-xs font-black uppercase px-3 py-1 rounded-sm tracking-wider shadow-sm">READING</span>
+          </div>
+          <div class="relative w-full">
+            <button id="slide-left-novels" type="button" class="flex absolute -left-2 md:-left-3 top-1/2 -translate-y-1/2 z-30 w-5 h-10 sm:w-6 sm:h-12 md:w-7 md:h-14 bg-[#e60067] hover:bg-[#ff0d7b] text-white items-center justify-center text-xs sm:text-sm font-black shadow-lg rounded-r-sm transition-all cursor-pointer" aria-label="Previous books"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="slide-right-novels" type="button" class="flex absolute -right-2 md:-right-3 top-1/2 -translate-y-1/2 z-30 w-5 h-10 sm:w-6 sm:h-12 md:w-7 md:h-14 bg-[#e60067] hover:bg-[#ff0d7b] text-white items-center justify-center text-xs sm:text-sm font-black shadow-lg rounded-l-sm transition-all cursor-pointer" aria-label="Next books"><i class="fa-solid fa-chevron-right"></i></button>
+            <div id="slider-novels" data-book-format="novel" class="flex flex-row gap-2.5 sm:gap-3 overflow-x-auto scroll-smooth no-scrollbar py-1 w-full" aria-live="polite" aria-busy="true"></div>
+          </div>
+        </section>
+        <section aria-labelledby="manga-heading" class="w-full">
+          <div class="flex items-center justify-between border-b-2 border-neutral-300 pb-2 mb-4">
+            <h2 id="manga-heading" class="font-['Anton',sans-serif] text-xl sm:text-2xl font-bold uppercase tracking-wide text-neutral-900">Manga</h2>
+            <span class="bg-[#e60067] text-white text-[11px] sm:text-xs font-black uppercase px-3 py-1 rounded-sm tracking-wider shadow-sm">COMICS</span>
+          </div>
+          <div class="relative w-full">
+            <button id="slide-left-manga" type="button" class="flex absolute -left-2 md:-left-3 top-1/2 -translate-y-1/2 z-30 w-5 h-10 sm:w-6 sm:h-12 md:w-7 md:h-14 bg-[#e60067] hover:bg-[#ff0d7b] text-white items-center justify-center text-xs sm:text-sm font-black shadow-lg rounded-r-sm transition-all cursor-pointer" aria-label="Previous manga"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="slide-right-manga" type="button" class="flex absolute -right-2 md:-right-3 top-1/2 -translate-y-1/2 z-30 w-5 h-10 sm:w-6 sm:h-12 md:w-7 md:h-14 bg-[#e60067] hover:bg-[#ff0d7b] text-white items-center justify-center text-xs sm:text-sm font-black shadow-lg rounded-l-sm transition-all cursor-pointer" aria-label="Next manga"><i class="fa-solid fa-chevron-right"></i></button>
+            <div id="slider-manga" data-book-format="manga" class="flex flex-row gap-2.5 sm:gap-3 overflow-x-auto scroll-smooth no-scrollbar py-1 w-full" aria-live="polite" aria-busy="true"></div>
+          </div>
+        </section>
+      </div>
+    </main>          <div class="lg:col-span-7 bg-neutral-950 border border-neutral-800 p-5 sm:p-7 rounded-sm shadow-xl">
+            <form action="#" method="POST" class="space-y-3.5">
+              <fieldset class="space-y-3.5 border-0 p-0 m-0">
+                <legend class="sr-only">Formulir Kontak</legend>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div>
+                    <label for="contact-name" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-300 mb-1">
+                      Nama Lengkap <span class="text-[#e60067]">*</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="contact-name" 
+                      name="name" 
+                      required 
+                      placeholder="Masukkan nama Anda" 
+                      class="w-full bg-neutral-900 border border-neutral-700 rounded-sm px-3 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#c81062] transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="contact-email" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-300 mb-1">
+                      Alamat Email <span class="text-[#e60067]">*</span>
+                    </label>
+                    <input 
+                      type="email" 
+                      id="contact-email" 
+                      name="email" 
+                      required 
+                      placeholder="email@contoh.com" 
+                      class="w-full bg-neutral-900 border border-neutral-700 rounded-sm px-3 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#c81062] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="contact-category" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-300 mb-1">
+                    Kategori Pesan <span class="text-[#e60067]">*</span>
+                  </label>
+                  <select 
+                    id="contact-category" 
+                    name="category" 
+                    required 
+                    class="w-full bg-neutral-900 border border-neutral-700 rounded-sm px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#c81062] transition-colors"
+                  >
+                    <option value="" disabled selected class="bg-neutral-900 text-neutral-500">Pilih Kategori</option>
+                    <option value="request" class="bg-neutral-900 text-white">Request Buku / Manga / Anime</option>
+                    <option value="report" class="bg-neutral-900 text-white">Laporan Cover Rusak / Server Error</option>
+                    <option value="feedback" class="bg-neutral-900 text-white">Kritik & Saran Platform</option>
+                    <option value="other" class="bg-neutral-900 text-white">Lainnya</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="contact-message" class="block text-[11px] font-bold uppercase tracking-wider text-neutral-300 mb-1">
+                    Isi Pesan <span class="text-[#e60067]">*</span>
+                  </label>
+                  <textarea 
+                    id="contact-message" 
+                    name="message" 
+                    rows="4" 
+                    required 
+                    placeholder="Tuliskan pesan atau judul buku, manga, atau anime yang ingin Anda request..." 
+                    class="w-full bg-neutral-900 border border-neutral-700 rounded-sm px-3 py-2 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-[#c81062] transition-colors resize-y"
+                  ></textarea>
+                </div>
+              </fieldset>
+
+              <button 
+                type="submit" 
+                class="w-full bg-[#e60067] hover:bg-[#ff0d7b] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider py-3 px-6 rounded-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer mt-2"
+              >
+                <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="w-full bg-[#080808] text-neutral-400 py-10 px-3 sm:px-4 border-t border-neutral-800" aria-label="Footer Navigasi">
+      <div class="max-w-[1380px] mx-auto space-y-8">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8">
+          
+          <div class="lg:col-span-4 space-y-3">
+            <div class="flex items-center gap-2">
+              <!-- <span class="text-white text-xl">
+                <i class="fa-solid fa-clover"></i>
+              </span> -->
+              <span class="font-['Anton',sans-serif] text-2xl text-white tracking-wider uppercase leading-none">
+                FLIPPLAY
+              </span>
+            </div>
+            <p class="text-xs text-neutral-400 leading-relaxed max-w-sm">
+              Platform multimedia untuk menemukan anime dan menjelajahi koleksi buku serta manga dalam satu pengalaman web.
+            </p>
+            <p class="text-[10px] text-neutral-500">Cover buku disediakan oleh <a href="https://openlibrary.org" target="_blank" rel="noreferrer" class="hover:text-white underline">Open Library</a>.</p>
+            <div class="flex items-center gap-2.5 pt-1">
+              <a href="#" class="w-8 h-8 rounded bg-neutral-900 hover:bg-[#e60067] hover:text-white border border-neutral-800 flex items-center justify-center text-neutral-400 transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube text-xs"></i></a>
+              <a href="#" class="w-8 h-8 rounded bg-neutral-900 hover:bg-[#00875a] hover:text-white border border-neutral-800 flex items-center justify-center text-neutral-400 transition-colors" aria-label="Telegram"><i class="fa-brands fa-telegram text-xs"></i></a>
+              <a href="#" class="w-8 h-8 rounded bg-neutral-900 hover:bg-sky-500 hover:text-white border border-neutral-800 flex items-center justify-center text-neutral-400 transition-colors" aria-label="Twitter"><i class="fa-brands fa-x-twitter text-xs"></i></a>
+              <a href="#" class="w-8 h-8 rounded bg-neutral-900 hover:bg-pink-600 hover:text-white border border-neutral-800 flex items-center justify-center text-neutral-400 transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram text-xs"></i></a>
+              <a href="#" class="w-8 h-8 rounded bg-neutral-900 hover:bg-indigo-600 hover:text-white border border-neutral-800 flex items-center justify-center text-neutral-400 transition-colors" aria-label="Discord"><i class="fa-brands fa-discord text-xs"></i></a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-3 space-y-2.5">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-white">Jelajahi FlipPlay</h4>
+            <ul class="space-y-2 text-xs text-neutral-400 list-none p-0 m-0">
+              <li><a href="#anime-discovery" class="hover:text-white transition-colors">Jelajahi anime</a></li>
+              <li><a href="#reading-section" class="hover:text-white transition-colors">Buku & novel</a></li>
+              <li><a href="#manga-heading" class="hover:text-white transition-colors">Koleksi manga</a></li>
+              <li><a href="#trending-section" class="hover:text-white transition-colors">Pilihan bacaan</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Request judul</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-3 space-y-2.5">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-white">Bacaan & Genre</h4>
+            <ul class="space-y-2 text-xs text-neutral-400 list-none p-0 m-0">
+              <li><a href="#reading-section" class="hover:text-white transition-colors">Buku & novel</a></li>
+              <li><a href="#manga-heading" class="hover:text-white transition-colors">Manga & komik</a></li>
+              <li><a href="#anime-discovery" class="hover:text-white transition-colors">Action & petualangan</a></li>
+              <li><a href="#anime-discovery" class="hover:text-white transition-colors">Drama & romance</a></li>
+              <li><a href="#anime-discovery" class="hover:text-white transition-colors">Fantasy & misteri</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-2 space-y-2.5">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-white">Bantuan & Legal</h4>
+            <ul class="space-y-2 text-xs text-neutral-400 list-none p-0 m-0">
+              <li><a href="#contact" class="hover:text-white transition-colors">Pusat Bantuan</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Request Judul</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Kontak Kami</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="pt-6 border-t border-neutral-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
+          <p class="m-0 text-center sm:text-left">&copy; 2026 <strong class="text-neutral-300">FlipPlay Inc.</strong> Hak Cipta Dilindungi Undang-Undang. Praktikum Pemrograman Web.</p>
+          <a href="#trending-section" class="text-neutral-400 hover:text-white transition-colors">Kembali ke Atas ↑</a>
+        </div>
+
+      </div>
+    </footer>
+
+    <script>
+      function initSlider(sliderId, leftBtnId, rightBtnId) {
+        const slider = document.getElementById(sliderId);
+        const leftBtn = document.getElementById(leftBtnId);
+        const rightBtn = document.getElementById(rightBtnId);
+
+        if (slider && rightBtn) {
+          rightBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 360, behavior: 'smooth' });
+          });
+        }
+        if (slider && leftBtn) {
+          leftBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -360, behavior: 'smooth' });
+          });
+        }
+      }
+
+      initSlider('slider-featured', 'slide-left-featured', 'slide-right-featured');
+      initSlider('slider-novels', 'slide-left-novels', 'slide-right-novels');
+      initSlider('slider-manga', 'slide-left-manga', 'slide-right-manga');
+
+    </script>
+  </body>
+</html>
